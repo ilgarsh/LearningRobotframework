@@ -1,0 +1,1418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20171228 10:26:14.703" generator="Robot 3.0.2 (Python 2.7.12 on linux2)">
+<suite source="/home/ilgarsh/PycharmProjects/simplehttp/send_message_tests.robot" id="s1" name="Send Message Tests">
+<test id="s1-t1" name="Client Gets Request Without Message">
+<kw type="setup" name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>http://127.0.0.1:8002</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.776" level="INFO">Creating Session using : alias=SERVER, url=http://127.0.0.1:8002, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20171228 10:26:14.776" starttime="20171228 10:26:14.776"></status>
+</kw>
+<kw name="Client Sends Message">
+<doc>Client gets request with ${message} in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${NONE}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.778" level="INFO">&amp;{header} = { iws=None }</msg>
+<status status="PASS" endtime="20171228 10:26:14.778" starttime="20171228 10:26:14.778"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.781" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': None} json=None</msg>
+<msg timestamp="20171228 10:26:14.781" level="INFO">${RESPONSE} = &lt;Response [400]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.781" starttime="20171228 10:26:14.778"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.782" level="INFO">${RESPONSE} = &lt;Response [400]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.782" starttime="20171228 10:26:14.782"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.782" starttime="20171228 10:26:14.777"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${400}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.783" starttime="20171228 10:26:14.782"></status>
+</kw>
+<kw type="teardown" name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20171228 10:26:14.783" level="INFO">Delete All Sessions</msg>
+<status status="PASS" endtime="20171228 10:26:14.783" starttime="20171228 10:26:14.783"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.783" critical="yes" starttime="20171228 10:26:14.775"></status>
+</test>
+<test id="s1-t2" name="Client Sends Valid Messages">
+<kw type="setup" name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>http://127.0.0.1:8002</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.784" level="INFO">Creating Session using : alias=SERVER, url=http://127.0.0.1:8002, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20171228 10:26:14.785" starttime="20171228 10:26:14.784"></status>
+</kw>
+<kw name="Client Sends aa And Gets Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with aa in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.786" level="INFO">&amp;{header} = { iws=aa }</msg>
+<status status="PASS" endtime="20171228 10:26:14.786" starttime="20171228 10:26:14.785"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.789" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'aa'} json=None</msg>
+<msg timestamp="20171228 10:26:14.789" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.789" starttime="20171228 10:26:14.786"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.790" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.790" starttime="20171228 10:26:14.790"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.790" starttime="20171228 10:26:14.785"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.791" starttime="20171228 10:26:14.790"></status>
+</kw>
+<kw name="Server Should Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>true</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.792" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.792" starttime="20171228 10:26:14.791"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.792" starttime="20171228 10:26:14.791"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.792" starttime="20171228 10:26:14.785"></status>
+</kw>
+<kw name="Client Sends aBcD9_0 And Gets Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with aBcD9_0 in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.793" level="INFO">&amp;{header} = { iws=aBcD9_0 }</msg>
+<status status="PASS" endtime="20171228 10:26:14.793" starttime="20171228 10:26:14.793"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.796" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'aBcD9_0'} json=None</msg>
+<msg timestamp="20171228 10:26:14.797" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.797" starttime="20171228 10:26:14.793"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.797" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.797" starttime="20171228 10:26:14.797"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.797" starttime="20171228 10:26:14.792"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.798" starttime="20171228 10:26:14.798"></status>
+</kw>
+<kw name="Server Should Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>true</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.799" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.799" starttime="20171228 10:26:14.798"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.799" starttime="20171228 10:26:14.798"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.799" starttime="20171228 10:26:14.792"></status>
+</kw>
+<kw name="Client Sends AA And Gets Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with AA in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.800" level="INFO">&amp;{header} = { iws=AA }</msg>
+<status status="PASS" endtime="20171228 10:26:14.800" starttime="20171228 10:26:14.800"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.803" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'AA'} json=None</msg>
+<msg timestamp="20171228 10:26:14.803" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.803" starttime="20171228 10:26:14.800"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.803" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.803" starttime="20171228 10:26:14.803"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.803" starttime="20171228 10:26:14.799"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.804" starttime="20171228 10:26:14.804"></status>
+</kw>
+<kw name="Server Should Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>true</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.805" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.805" starttime="20171228 10:26:14.804"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.805" starttime="20171228 10:26:14.804"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.805" starttime="20171228 10:26:14.799"></status>
+</kw>
+<kw name="Client Sends 1234 And Gets Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with 1234 in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.807" level="INFO">&amp;{header} = { iws=1234 }</msg>
+<status status="PASS" endtime="20171228 10:26:14.807" starttime="20171228 10:26:14.806"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.809" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'1234'} json=None</msg>
+<msg timestamp="20171228 10:26:14.810" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.810" starttime="20171228 10:26:14.807"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.810" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.810" starttime="20171228 10:26:14.810"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.810" starttime="20171228 10:26:14.806"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.811" starttime="20171228 10:26:14.811"></status>
+</kw>
+<kw name="Server Should Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>true</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.812" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.812" starttime="20171228 10:26:14.811"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.812" starttime="20171228 10:26:14.811"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.812" starttime="20171228 10:26:14.805"></status>
+</kw>
+<kw name="Client Sends __ And Gets Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with __ in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.813" level="INFO">&amp;{header} = { iws=__ }</msg>
+<status status="PASS" endtime="20171228 10:26:14.813" starttime="20171228 10:26:14.813"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.816" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'__'} json=None</msg>
+<msg timestamp="20171228 10:26:14.816" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.816" starttime="20171228 10:26:14.813"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.816" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.816" starttime="20171228 10:26:14.816"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.816" starttime="20171228 10:26:14.812"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.817" starttime="20171228 10:26:14.817"></status>
+</kw>
+<kw name="Server Should Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>true</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.818" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.818" starttime="20171228 10:26:14.817"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.818" starttime="20171228 10:26:14.817"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.818" starttime="20171228 10:26:14.812"></status>
+</kw>
+<kw name="Client Sends abCD0123__ And Gets Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with abCD0123__ in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.819" level="INFO">&amp;{header} = { iws=abCD0123__ }</msg>
+<status status="PASS" endtime="20171228 10:26:14.819" starttime="20171228 10:26:14.819"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.822" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'abCD0123__'} json=None</msg>
+<msg timestamp="20171228 10:26:14.822" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.822" starttime="20171228 10:26:14.819"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.822" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.822" starttime="20171228 10:26:14.822"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.823" starttime="20171228 10:26:14.819"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.823" starttime="20171228 10:26:14.823"></status>
+</kw>
+<kw name="Server Should Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>true</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.824" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.824" starttime="20171228 10:26:14.823"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.824" starttime="20171228 10:26:14.823"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.824" starttime="20171228 10:26:14.818"></status>
+</kw>
+<kw name="Client Sends _______ And Gets Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with _______ in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.825" level="INFO">&amp;{header} = { iws=_______ }</msg>
+<status status="PASS" endtime="20171228 10:26:14.825" starttime="20171228 10:26:14.825"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.828" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'_______'} json=None</msg>
+<msg timestamp="20171228 10:26:14.828" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.828" starttime="20171228 10:26:14.825"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.829" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.829" starttime="20171228 10:26:14.828"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.829" starttime="20171228 10:26:14.825"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.830" starttime="20171228 10:26:14.829"></status>
+</kw>
+<kw name="Server Should Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>true</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.831" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.831" starttime="20171228 10:26:14.830"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.831" starttime="20171228 10:26:14.830"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.831" starttime="20171228 10:26:14.824"></status>
+</kw>
+<kw name="Client Sends 00 And Gets Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with 00 in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.833" level="INFO">&amp;{header} = { iws=00 }</msg>
+<status status="PASS" endtime="20171228 10:26:14.833" starttime="20171228 10:26:14.832"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.835" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'00'} json=None</msg>
+<msg timestamp="20171228 10:26:14.835" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.835" starttime="20171228 10:26:14.833"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.836" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.836" starttime="20171228 10:26:14.835"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.836" starttime="20171228 10:26:14.832"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.836" starttime="20171228 10:26:14.836"></status>
+</kw>
+<kw name="Server Should Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>true</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.837" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.837" starttime="20171228 10:26:14.837"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.837" starttime="20171228 10:26:14.837"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.837" starttime="20171228 10:26:14.831"></status>
+</kw>
+<kw name="Client Sends _123456789_ And Gets Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with _123456789_ in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.839" level="INFO">&amp;{header} = { iws=_123456789_ }</msg>
+<status status="PASS" endtime="20171228 10:26:14.839" starttime="20171228 10:26:14.838"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.841" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'_123456789_'} json=None</msg>
+<msg timestamp="20171228 10:26:14.841" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.841" starttime="20171228 10:26:14.839"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.842" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.842" starttime="20171228 10:26:14.841"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.842" starttime="20171228 10:26:14.838"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.842" starttime="20171228 10:26:14.842"></status>
+</kw>
+<kw name="Server Should Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>true</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.843" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.843" starttime="20171228 10:26:14.843"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.843" starttime="20171228 10:26:14.843"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.843" starttime="20171228 10:26:14.838"></status>
+</kw>
+<kw name="Client Sends abcdEFGH And Gets Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with abcdEFGH in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.845" level="INFO">&amp;{header} = { iws=abcdEFGH }</msg>
+<status status="PASS" endtime="20171228 10:26:14.845" starttime="20171228 10:26:14.844"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.847" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'abcdEFGH'} json=None</msg>
+<msg timestamp="20171228 10:26:14.847" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.848" starttime="20171228 10:26:14.845"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.848" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.848" starttime="20171228 10:26:14.848"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.848" starttime="20171228 10:26:14.844"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.849" starttime="20171228 10:26:14.848"></status>
+</kw>
+<kw name="Server Should Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>true</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.850" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.850" starttime="20171228 10:26:14.849"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.850" starttime="20171228 10:26:14.849"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.850" starttime="20171228 10:26:14.844"></status>
+</kw>
+<kw type="teardown" name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20171228 10:26:14.851" level="INFO">Delete All Sessions</msg>
+<status status="PASS" endtime="20171228 10:26:14.851" starttime="20171228 10:26:14.850"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.851" critical="yes" starttime="20171228 10:26:14.783"></status>
+</test>
+<test id="s1-t3" name="Client Sends Invalid Messages">
+<kw type="setup" name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>http://127.0.0.1:8002</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.852" level="INFO">Creating Session using : alias=SERVER, url=http://127.0.0.1:8002, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20171228 10:26:14.852" starttime="20171228 10:26:14.852"></status>
+</kw>
+<kw name="Client Sends ${EMPTY} And Gets Not Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with  in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.854" level="INFO">&amp;{header} = { iws= }</msg>
+<status status="PASS" endtime="20171228 10:26:14.854" starttime="20171228 10:26:14.853"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.856" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': ''} json=None</msg>
+<msg timestamp="20171228 10:26:14.857" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.857" starttime="20171228 10:26:14.854"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.857" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.857" starttime="20171228 10:26:14.857"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.857" starttime="20171228 10:26:14.853"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.858" starttime="20171228 10:26:14.857"></status>
+</kw>
+<kw name="Server Should Not Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>false</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.858" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.859" starttime="20171228 10:26:14.858"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.859" starttime="20171228 10:26:14.858"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.859" starttime="20171228 10:26:14.853"></status>
+</kw>
+<kw name="Client Sends _ And Gets Not Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with _ in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.860" level="INFO">&amp;{header} = { iws=_ }</msg>
+<status status="PASS" endtime="20171228 10:26:14.860" starttime="20171228 10:26:14.860"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.862" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'_'} json=None</msg>
+<msg timestamp="20171228 10:26:14.862" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.862" starttime="20171228 10:26:14.860"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.863" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.863" starttime="20171228 10:26:14.863"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.863" starttime="20171228 10:26:14.859"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.863" starttime="20171228 10:26:14.863"></status>
+</kw>
+<kw name="Server Should Not Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>false</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.864" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.864" starttime="20171228 10:26:14.864"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.865" starttime="20171228 10:26:14.864"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.865" starttime="20171228 10:26:14.859"></status>
+</kw>
+<kw name="Client Sends a And Gets Not Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with a in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.866" level="INFO">&amp;{header} = { iws=a }</msg>
+<status status="PASS" endtime="20171228 10:26:14.866" starttime="20171228 10:26:14.865"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.869" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'a'} json=None</msg>
+<msg timestamp="20171228 10:26:14.869" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.869" starttime="20171228 10:26:14.866"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.869" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.870" starttime="20171228 10:26:14.869"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.870" starttime="20171228 10:26:14.865"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.870" starttime="20171228 10:26:14.870"></status>
+</kw>
+<kw name="Server Should Not Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>false</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.871" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.871" starttime="20171228 10:26:14.871"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.871" starttime="20171228 10:26:14.870"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.871" starttime="20171228 10:26:14.865"></status>
+</kw>
+<kw name="Client Sends _0123456789_ And Gets Not Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with _0123456789_ in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.873" level="INFO">&amp;{header} = { iws=_0123456789_ }</msg>
+<status status="PASS" endtime="20171228 10:26:14.873" starttime="20171228 10:26:14.873"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.876" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'_0123456789_'} json=None</msg>
+<msg timestamp="20171228 10:26:14.876" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.876" starttime="20171228 10:26:14.873"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.876" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.876" starttime="20171228 10:26:14.876"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.877" starttime="20171228 10:26:14.872"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.877" starttime="20171228 10:26:14.877"></status>
+</kw>
+<kw name="Server Should Not Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>false</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.878" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.878" starttime="20171228 10:26:14.877"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.878" starttime="20171228 10:26:14.877"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.878" starttime="20171228 10:26:14.871"></status>
+</kw>
+<kw name="Client Sends ___abcdegh123123 And Gets Not Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with ___abcdegh123123 in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.879" level="INFO">&amp;{header} = { iws=___abcdegh123123 }</msg>
+<status status="PASS" endtime="20171228 10:26:14.879" starttime="20171228 10:26:14.879"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.882" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'___abcdegh123123'} json=None</msg>
+<msg timestamp="20171228 10:26:14.883" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.883" starttime="20171228 10:26:14.879"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.883" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.883" starttime="20171228 10:26:14.883"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.883" starttime="20171228 10:26:14.878"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.884" starttime="20171228 10:26:14.884"></status>
+</kw>
+<kw name="Server Should Not Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>false</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.885" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.885" starttime="20171228 10:26:14.884"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.885" starttime="20171228 10:26:14.884"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.885" starttime="20171228 10:26:14.878"></status>
+</kw>
+<kw name="Client Sends abcd(0_ And Gets Not Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with abcd(0_ in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.886" level="INFO">&amp;{header} = { iws=abcd(0_ }</msg>
+<status status="PASS" endtime="20171228 10:26:14.886" starttime="20171228 10:26:14.886"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.889" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'abcd(0_'} json=None</msg>
+<msg timestamp="20171228 10:26:14.889" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.889" starttime="20171228 10:26:14.887"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.890" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.890" starttime="20171228 10:26:14.890"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.890" starttime="20171228 10:26:14.885"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.891" starttime="20171228 10:26:14.890"></status>
+</kw>
+<kw name="Server Should Not Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>false</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.891" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.892" starttime="20171228 10:26:14.891"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.892" starttime="20171228 10:26:14.891"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.892" starttime="20171228 10:26:14.885"></status>
+</kw>
+<kw name="Client Sends $$ And Gets Not Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with $$ in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.893" level="INFO">&amp;{header} = { iws=$$ }</msg>
+<status status="PASS" endtime="20171228 10:26:14.893" starttime="20171228 10:26:14.893"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.895" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'$$'} json=None</msg>
+<msg timestamp="20171228 10:26:14.896" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.896" starttime="20171228 10:26:14.893"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.896" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.896" starttime="20171228 10:26:14.896"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.896" starttime="20171228 10:26:14.892"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.897" starttime="20171228 10:26:14.896"></status>
+</kw>
+<kw name="Server Should Not Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>false</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.897" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.898" starttime="20171228 10:26:14.897"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.898" starttime="20171228 10:26:14.897"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.898" starttime="20171228 10:26:14.892"></status>
+</kw>
+<kw name="Client Sends !@#$ And Gets Not Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with !@#$ in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.899" level="INFO">&amp;{header} = { iws=!@#$ }</msg>
+<status status="PASS" endtime="20171228 10:26:14.899" starttime="20171228 10:26:14.899"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.902" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'!@#$'} json=None</msg>
+<msg timestamp="20171228 10:26:14.902" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.902" starttime="20171228 10:26:14.899"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.902" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.902" starttime="20171228 10:26:14.902"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.903" starttime="20171228 10:26:14.898"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.903" starttime="20171228 10:26:14.903"></status>
+</kw>
+<kw name="Server Should Not Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>false</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.904" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.904" starttime="20171228 10:26:14.903"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.904" starttime="20171228 10:26:14.903"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.904" starttime="20171228 10:26:14.898"></status>
+</kw>
+<kw name="Client Sends &quot;&quot;&quot; And Gets Not Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with """ in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.905" level="INFO">&amp;{header} = { iws=""" }</msg>
+<status status="PASS" endtime="20171228 10:26:14.905" starttime="20171228 10:26:14.905"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.908" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'"""'} json=None</msg>
+<msg timestamp="20171228 10:26:14.908" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.908" starttime="20171228 10:26:14.905"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.909" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.909" starttime="20171228 10:26:14.908"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.909" starttime="20171228 10:26:14.905"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.909" starttime="20171228 10:26:14.909"></status>
+</kw>
+<kw name="Server Should Not Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>false</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.910" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.910" starttime="20171228 10:26:14.910"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.910" starttime="20171228 10:26:14.910"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.910" starttime="20171228 10:26:14.904"></status>
+</kw>
+<kw name="Client Sends ---- And Gets Not Accepted">
+<kw name="Client Sends Message">
+<doc>Client gets request with ---- in header 'iws', check status code 200 and set the value of response's header 'Accepted' in the test variable.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>iws=${message}</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.912" level="INFO">&amp;{header} = { iws=---- }</msg>
+<status status="PASS" endtime="20171228 10:26:14.912" starttime="20171228 10:26:14.912"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>SERVER</arg>
+<arg>/</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${RESPONSE}</var>
+</assign>
+<msg timestamp="20171228 10:26:14.915" level="INFO">Get Request using : alias=SERVER, uri=/, headers={u'iws': u'----'} json=None</msg>
+<msg timestamp="20171228 10:26:14.915" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.915" starttime="20171228 10:26:14.912"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPONSE}</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.915" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.915" starttime="20171228 10:26:14.915"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.916" starttime="20171228 10:26:14.911"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.status_code}</arg>
+<arg>${200}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 10:26:14.916" starttime="20171228 10:26:14.916"></status>
+</kw>
+<kw name="Server Should Not Accept Message">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${RESPONSE.headers['Accepted']}</arg>
+<arg>false</arg>
+</arguments>
+<msg timestamp="20171228 10:26:14.917" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20171228 10:26:14.917" starttime="20171228 10:26:14.917"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.917" starttime="20171228 10:26:14.916"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.917" starttime="20171228 10:26:14.911"></status>
+</kw>
+<kw type="teardown" name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20171228 10:26:14.918" level="INFO">Delete All Sessions</msg>
+<status status="PASS" endtime="20171228 10:26:14.918" starttime="20171228 10:26:14.917"></status>
+</kw>
+<status status="PASS" endtime="20171228 10:26:14.918" critical="yes" starttime="20171228 10:26:14.851"></status>
+</test>
+<status status="PASS" endtime="20171228 10:26:14.918" starttime="20171228 10:26:14.704"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="3">Critical Tests</stat>
+<stat fail="0" pass="3">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Send Message Tests" pass="3">Send Message Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
