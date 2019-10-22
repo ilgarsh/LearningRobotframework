@@ -16,7 +16,7 @@ notify2==0.3
 pathlib==1.0.1
 pew==1.1.2
 pexpect==4.0.1
-Pillow==3.1.2
+Pillow==6.2.0
 pipenv==9.0.1
 post==0.0.0
 psutil==3.4.2
